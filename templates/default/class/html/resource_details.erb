@@ -3,7 +3,9 @@
     <% @meths.each do |meth| %>
 		<div class="method">
       <h3><%= meth.name %></h3>
-			<p class="method_desc"><%= meth.docstring %></p>
+			<div class="method_desc">
+              <%= @markdown.render(meth.docstring) %>
+            </div>
 
       <% if meth.tags(:url).size > 0 %>
         <div class="resource_url <%=rotate(:odd_even)%>">
@@ -52,21 +54,13 @@
 							<span class="hash request">
 								<strong class="type">Request</strong>
 								<% if example_request %>
-									<% if example_request.text =~ /\n/im %>
-										<%= htmlify(example_request.text) %>
-									<% else %>
-										<%= example_request.text %>
-									<% end %>
+								  	<%= @markdown.render(example_request.text) %>
 								<% end %>
 							</span>
 							<span class="hash response">
 								<strong class="type">Response</strong>
 								<% if example_response %>
-									<% if example_response.text =~ /\n/im %>
-										<%= htmlify(example_response.text) %>
-									<% else %>
-										<%= example_response.text %>
-									<% end %>
+                                    <%= @markdown.render(example_response.text) %>
 								<% end %>
 							</span>
 							<span class="description">

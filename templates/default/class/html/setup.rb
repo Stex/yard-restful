@@ -4,7 +4,11 @@ def init
 end
 
 def resource_details
-  @meths = (object.meths.select{|x| x.has_tag? :url} || [])
+  @meths    = (object.meths.select{|x| x.has_tag? :url} || [])
+  renderer  = Redcarpet::Render::XHTML.new(:prettify => true)
+  @markdown = Redcarpet::Markdown.new(renderer, :fenced_code_blocks           => true,
+                                                :disable_indented_code_blocks => true,
+                                                :no_intra_emphasis            => true)
   erb(:resource_details)
 end
 

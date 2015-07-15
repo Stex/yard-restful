@@ -37,17 +37,26 @@ body {
 #toc .title {display: none;}
 #toc a:link, #content a:visited { text-decoration: none; color: #05a; }
 #toc a:hover { background: #ffffa5; }
+
+code {
+  background-color: #FAFAFA;
+  border-radius: 4px;
+  color: #c7254e;
+  font-size: 90%;
+  padding: 2px 4px;
+}
+
 pre code {
+  border-radius: 5px;
   display: block;
-  background: #EAF0FF;
-  padding: 12px;
-  line-height: 1.9em;
+  padding: 9px;
+  line-height: 1.3em;
 }
 a.back {
   font-size: 1.2em;
   padding: 4px;
 }
-p.method_desc {
+.method_desc {
   padding: 16px 0 0 14px;
   font-size: 1.2em;
 }
@@ -109,9 +118,13 @@ h4 {
 }
 .parameters ul li .text {
   display: block;
+  padding-left: 5px;
+  margin-left: 4px;
+  border-radius: 3px;
+  border-left: 3px solid lightgray;
 }
-.parameters ul li .text p {
-  margin-top: 0px;
+.parameters ul li .text p:first-child {
+  margin-top: 2px;
 }
 .parameters ul li .type tt {
   font-family: "Lucida Sans", "Lucida Grande", Verdana, Arial, sans-serif; /*taken from original yard style.css*/
