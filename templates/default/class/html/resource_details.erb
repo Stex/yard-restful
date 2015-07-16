@@ -23,11 +23,12 @@
           <ul>
             <li>
               <span class="type"><%= format_types(meth.tag(:response).types, false) %></span>
-              <span class="text"><%= htmlify(meth.tag(:response).text) %></span>
+              <span class="text"><%= @markdown.render(meth.tag(:response).text) if meth.tag(:response).text %></span>
             </li>
           </ul>
         </div>
-      <% else %>
+      <% end %>
+	  <% if meth.tags(:response_field).size > 0 %>
         <%= yieldall(object: meth, item: :response_field, title: 'Response Fields') %>
       <% end %>
       <% if meth.tags(:raise).size > 0 %>
