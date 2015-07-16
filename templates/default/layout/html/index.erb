@@ -1,7 +1,7 @@
 <div id="start">
   <h1 class="noborder title"><%= options[:title] %></h1>
 
-	<%= htmlify(@readme.contents) if @readme%>
+  <%= @markdown.render(@readme.contents) if @readme%>
 
   <h2>All Resources</h2>
   <ul id="resources">
