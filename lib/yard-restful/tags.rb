@@ -5,7 +5,8 @@ tags = [
   ["HTTP-Action for the Resource",  :action],
 
   #["Object Used in Resource",       :resource_object],
-  ["Resource Object Property",      :property, :with_types_and_name],
+  ["Resource Object Property",      :attr, :with_types_and_name],
+  ["Resource Object Association",   :association, :with_types_and_name],
   ["Resource Object Example",       :example],
 
   ["Required Arguments",            :required,          :with_types_and_name],

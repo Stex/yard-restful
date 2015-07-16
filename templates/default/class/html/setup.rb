@@ -12,3 +12,12 @@ def resource_details
   erb(:resource_details)
 end
 
+def object_details
+  @meths    = object.meths
+  renderer  = Redcarpet::Render::XHTML.new(:prettify => true)
+  @markdown = Redcarpet::Markdown.new(renderer, :fenced_code_blocks           => true,
+                                      :disable_indented_code_blocks => true,
+                                      :no_intra_emphasis            => true)
+  erb(:object_details)
+end
+
