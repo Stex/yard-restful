@@ -14,8 +14,7 @@
           <span class="url"><%= meth.tag(:url).text %></span>
         </div>
       <% end %>
-
-      <%= yieldall(object: meth, item: :required, title: 'Required Parameters') %>
+      <%= yieldall(object: meth, item: :required, :resource_tags => @resource_tag_hierarchy[meth], title: 'Request Parameters') %>
       <%= yieldall(object: meth, item: :optional, title: 'Optional Parameters') %>
       <% if meth.tags(:response).size > 0 %>
         <div class="parameters <%=rotate(:odd_even)%>">

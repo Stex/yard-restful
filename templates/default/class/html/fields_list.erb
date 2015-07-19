@@ -1,17 +1,37 @@
-<% tags_list = object.tags(options.item) %>
-<% if tags_list.size > 0 %>
-  <div class="parameters <%= rotate(:odd_even) %>">
-    <% unless options.title.empty? %>
-      <h4><%= options.title %></h4>
-    <% end %>
-		<ul>
-  		<% tags_list.each do |tag| %>
-				<li>
-					<span class="name"><%= tag.name %></span>
-					<span class="type"><%= format_types(tag.types, false) %></span>
-					<span class="text"><%= @markdown.render(tag.text) if tag.text %></span>
-				</li>
-  		<% end %>
-	  </ul>
-	</div>
+<% if options.resource_tags %>
+	<div class="parameters <%= rotate(:odd_even) %>">
+	  <% unless options.title.empty? %>
+		  <h4><%= options.title %></h4>
+	  <% end %>
+      <div class="usage_instructions">
+        Parameters with a higher indentation than the previous parameter are meant to be children of it in the API request.
+        <br />
+        Example: <code>profile -> email</code> should be sent as <code>profile[email]</code>
+      </div>
+
+	  <ul>
+		<% options.resource_tags.each do |tag| %>
+            <%= render_resource_param_tag(tag) %>
+        <% end %>
+      </ul>
+    </div>
+
+<% else %>
+	<% tags_list = object.tags(options.item) %>
+	<% if tags_list.size > 0 %>
+	  <div class="parameters <%= rotate(:odd_even) %>">
+		<% unless options.title.empty? %>
+		  <h4><%= options.title %></h4>
+		<% end %>
+			<ul>
+			<% tags_list.each do |tag| %>
+					<li>
+						<span class="name"><%= tag.name %></span>
+						<span class="type"><%= format_types(tag.types, false) %></span>
+						<span class="text"><%= @markdown.render(tag.text) if tag.text %></span>
+					</li>
+			<% end %>
+		  </ul>
+		</div>
+	<% end %>
 <% end %>

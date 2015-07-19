@@ -1,6 +1,7 @@
 YARD::Templates::Engine.register_template_path File.dirname(__FILE__) + '/../templates'
 
-require 'yard-restful/tags'
+require 'yard-restful/core_ext'
+require 'yard-restful/tag_registration'
 require 'yard-restful/rest_filters'
 require 'yard-restful/html_blocks_helper'
 
@@ -14,4 +15,5 @@ module YardRestful
                                       :disable_indented_code_blocks => true,
                                       :no_intra_emphasis            => true)
   end
+
 end

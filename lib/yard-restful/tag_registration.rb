@@ -1,3 +1,5 @@
+require 'yard-restful/tags/param_tag'
+
 # Define custom tags
 tags = [
   ["Declaration of RESTful API type",:restful_api],
@@ -19,7 +21,8 @@ tags = [
   ["Example Response",              :example_response],
   ["Example Response Description",  :example_response_description],
   ["Response Fields",               :response_field,    :with_types_and_name],
-  ["Response Type",                 :response,    :with_types]
+  ["Response Type",                 :response,    :with_types],
+  ['Request Attribute',             'resource.param', YardRestful::Tags::ParamTag]
 ]
 
 tags.each do |tag|

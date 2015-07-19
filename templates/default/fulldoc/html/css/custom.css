@@ -121,7 +121,7 @@ h4 {
   padding-left: 5px;
   margin-left: 4px;
   border-radius: 3px;
-  border-left: 3px solid lightgray;
+  /*border-left: 3px solid lightgray;*/
 }
 .parameters ul li .text p:first-child {
   margin-top: 2px;
@@ -198,4 +198,19 @@ pre.code.json code:active {
 
 .object_properties_title {
   margin-bottom: 16px;
+}
+
+.parameters .requirement {
+  margin-left: 10px;
+  color: blueviolet;
+}
+
+.parameters .requirement[data-required=true] {
+  color: red;
+}
+
+.parameters ul.children {
+  padding-left: 5px;
+  margin-left: 10px;
+  border-left: 1px solid blue;
 }

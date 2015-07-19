@@ -1,0 +1,13 @@
+<li>
+  <span class="name"><%= @tag.name %></span>
+  <span class="type"><%= format_types(@tag.types, false) %></span>
+  <span class="requirement" data-required="<%= @tag.required? %>"><%= @tag.requirement %></span>
+  <span class="text"><%= @markdown.render(@tag.text) if @tag.text %></span>
+  <% if @tag.children.any? %>
+    <ul class="children">
+      <% @tag.children.each do |child| %>
+        <%= render_resource_param_tag(child) %>
+      <% end %>
+    </ul>
+  <% end %>
+</li>
