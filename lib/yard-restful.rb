@@ -1,5 +1,6 @@
 YARD::Templates::Engine.register_template_path File.dirname(__FILE__) + '/../templates'
 
+require 'yard-restful/core_ext'
 require 'yard-restful/tag_registration'
 require 'yard-restful/rest_filters'
 require 'yard-restful/html_blocks_helper'

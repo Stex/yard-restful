@@ -20,6 +20,9 @@ module HtmlBlocksHelper
     end
   end
 
+  #
+  # Renders a single resource_param_tag
+  #
   def render_resource_param_tag(tag)
     @tag = tag
     erb(:resource_param_tag)

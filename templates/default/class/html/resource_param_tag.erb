@@ -5,7 +5,7 @@
   <span class="text"><%= @markdown.render(@tag.text) if @tag.text %></span>
   <% if @tag.children.any? %>
     <ul class="children">
-      <% @tag.children.each do |child| %>
+      <% @tag.children.stable_sort.each do |child| %>
         <%= render_resource_param_tag(child) %>
       <% end %>
     </ul>
