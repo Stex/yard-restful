@@ -7,6 +7,9 @@
         Parameters with a higher indentation than the previous parameter are meant to be children of it in the API request.
         <br />
         Example: <code>profile -> email</code> should be sent as <code>profile[email]</code>
+        <br />
+        If a parent tag is marked as optional, its children only have to be provided if the parent tag itself
+        is part of the request, even if they are marked as <span style="color: red;">required</span>.
       </div>
 
 	  <ul>

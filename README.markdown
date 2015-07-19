@@ -55,6 +55,21 @@ So that way, whenever you want to generate your API docs, you simply need to run
 
 The following tags are provided:
 
+- **@resource.param** `(required|optional)` `(<parents>)?` `[Type]`  `name`
+
+  Specifies a param for an API request.
+
+  Parents are specified using a dot-Path, e.g. `user.address_attributes` for a param describing the required street attribute
+  for nested_attribute mass assignment:
+
+  ```ruby
+  # @resource.param required <user.address_attributes> [String] street
+  ```
+
+  **Important**: All parent tags have to exist as well, otherwise, the children will not be shown!
+
+  You may specify multiple parents (comma separated), the child tag will appear under each one of them.
+
 - **@restful_api** version
 
   Specifies the resource (controller) or object (model). This tag is compulsory, only **classes** and **methods** that include this in their comments are included in the API documentation.
