@@ -27,8 +27,9 @@ def menu_lists
 end
 
 def index
-  @readme = options[:readme]
-  @resources = select_resources(@objects)
-  @markdown = YardRestful.initialize_markdown
+  @readme        = options[:readme]
+  @resources     = select_resources(@objects)
+  @non_resources = select_objects(@objects)
+  @markdown      = YardRestful.initialize_markdown
   erb(:index)
 end

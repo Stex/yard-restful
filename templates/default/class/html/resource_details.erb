@@ -1,82 +1,101 @@
 <% if object.restful? && object.resource? %>
-  <div id="Services" class="method_details_list">
-    <% @meths.each do |meth| %>
-		<div class="method">
-      <h3><%= meth.name %></h3>
-			<div class="method_desc">
+    <div id="Services" class="method_details_list">
+      <% @meths.each do |meth| %>
+          <div class="method">
+            <h3><%= meth.name %></h3>
+
+            <div class="method_desc">
               <%= @markdown.render(meth.docstring) %>
             </div>
 
-      <% if meth.tags(:url).size > 0 %>
-        <div class="resource_url <%=rotate(:odd_even)%>">
-          <h4>URL</h4>
-          <span class="action"><%= meth.tag(:action).text %></span>
-          <span class="url"><%= meth.tag(:url).text %></span>
-        </div>
-      <% end %>
-      <%= yieldall(object: meth, item: :required, :resource_tags => @resource_tag_hierarchy[meth], title: 'Request Parameters') %>
-      <%= yieldall(object: meth, item: :optional, title: 'Optional Parameters') %>
-      <% if meth.tags(:response).size > 0 %>
-        <div class="parameters <%=rotate(:odd_even)%>">
-          <h4>Response Object</h4>
-          <ul>
-            <li>
-              <span class="type"><%= format_types(meth.tag(:response).types, false) %></span>
-              <span class="text"><%= @markdown.render(meth.tag(:response).text) if meth.tag(:response).text %></span>
-            </li>
-          </ul>
-        </div>
-      <% end %>
-	  <% if meth.tags(:response_field).size > 0 %>
-        <%= yieldall(object: meth, item: :response_field, title: 'Response Fields') %>
-      <% end %>
-      <% if meth.tags(:raise).size > 0 %>
-        <%= yieldall(object: meth, item: :raise, title: 'Errors') %>
-      <% end %>
+            <% if meth.tags(:url).size > 0 %>
+                <div class="resource_url section">
+                  <h4>URL</h4>
+                  <span class="action"><%= meth.tag(:action).text %></span>
+                  <span class="url"><%= meth.tag(:url).text %></span>
+                </div>
+            <% end %>
 
-			<% if meth.tags(:example_request).size > 0 %>
-				<div class="examples">
-					<h4>Examples</h4>
-					<% meth.tags(:example_request).each_with_index do |example_request, i| %>
-						<div class="example">
-							<% example_request_description = meth.tags(:example_request_description)[i] %>
-							<% example_response = meth.tags(:example_response)[i] %>
-							<% example_response_description = meth.tags(:example_response_description)[i] %>
-							<span class="description">
-								<% if example_request_description %>
-									<% if example_request_description.text =~ /\n/im %>
-										<%= htmlify(example_request_description.text) %>
-									<% else %>
-										<%= example_request_description.text %>
-									<% end %>
-								<% end %>
-							</span>
-							<span class="hash request">
-								<strong class="type">Request</strong>
-								<% if example_request %>
-								  	<%= @markdown.render(example_request.text) %>
-								<% end %>
-							</span>
-							<span class="hash response">
-								<strong class="type">Response</strong>
-								<% if example_response %>
+            <% if meth.tags('resource.status_code').any? %>
+                <div class="section response-status-codes">
+                  <h4>Response Status Codes</h4>
+                  <ul>
+                      <% meth.tags('resource.status_code').each do |tag| %>
+                        <li>
+                            <span class="http-status"><code><%= tag.status_code %></code></span>
+                            <% if tag.internal_code %>
+                                <span class="internal-code"><code><%= tag.internal_code %></code></span>
+                            <% end %>
+                            <span class="text"><%= @markdown.render(tag.text) if tag.text %></span>
+                        </li>
+                      <% end %>
+                  </ul>
+                </div>
+            <% end %>
+
+            <%= yieldall(object: meth, item: :required, :resource_tags => @resource_tag_hierarchy[meth], title: 'Request Parameters') %>
+            <%= yieldall(object: meth, item: :optional, title: 'Optional Parameters') %>
+            <% if meth.tags(:response).size > 0 %>
+                <div class="parameters section">
+                  <h4>Response Object</h4>
+                  <ul>
+                    <li>
+                      <span class="type"><%= format_types(meth.tag(:response).types, false) %></span>
+                      <span class="text"><%= @markdown.render(meth.tag(:response).text) if meth.tag(:response).text %></span>
+                    </li>
+                  </ul>
+                </div>
+            <% end %>
+            <% if meth.tags(:response_field).size > 0 %>
+                <%= yieldall(object: meth, item: :response_field, title: 'Response Fields') %>
+            <% end %>
+            <% if meth.tags(:raise).size > 0 %>
+                <%= yieldall(object: meth, item: :raise, title: 'Errors') %>
+            <% end %>
+
+            <% if meth.tags(:example_request).size > 0 %>
+                <div class="examples">
+                  <h4>Examples</h4>
+                  <% meth.tags(:example_request).each_with_index do |example_request, i| %>
+                      <div class="example">
+                        <% example_request_description = meth.tags(:example_request_description)[i] %>
+                        <% example_response = meth.tags(:example_response)[i] %>
+                        <% example_response_description = meth.tags(:example_response_description)[i] %>
+                        <span class="description">
+                                <% if example_request_description %>
+                                    <% if example_request_description.text =~ /\n/im %>
+                                        <%= htmlify(example_request_description.text) %>
+                                    <% else %>
+                                        <%= example_request_description.text %>
+                                    <% end %>
+                                <% end %>
+                            </span>
+                            <span class="hash request">
+                                <strong class="type">Request</strong>
+                              <% if example_request %>
+                                    <%= @markdown.render(example_request.text) %>
+                                <% end %>
+                            </span>
+                            <span class="hash response">
+                                <strong class="type">Response</strong>
+                              <% if example_response %>
                                     <%= @markdown.render(example_response.text) %>
-								<% end %>
-							</span>
-							<span class="description">
-								<% if example_response_description %>
-									<% if example_response_description.text =~ /\n/im %>
-										<%= htmlify(example_response_description.text) %>
-									<% else %>
-										<%= example_response_description.text %>
-									<% end %>
-								<% end %>
-							</span>
-						</div>
-					<% end %>
-				</div>
-			<% end %>
-		</div>
-    <% end %>
-  </div>
+                                <% end %>
+                            </span>
+                            <span class="description">
+                                <% if example_response_description %>
+                                    <% if example_response_description.text =~ /\n/im %>
+                                        <%= htmlify(example_response_description.text) %>
+                                    <% else %>
+                                        <%= example_response_description.text %>
+                                    <% end %>
+                                <% end %>
+                            </span>
+                      </div>
+                  <% end %>
+                </div>
+            <% end %>
+          </div>
+      <% end %>
+    </div>
 <% end %>

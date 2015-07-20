@@ -1,5 +1,5 @@
 <% if options.resource_tags %>
-	<div class="parameters <%= rotate(:odd_even) %>">
+	<div class="parameters section">
 	  <% unless options.title.empty? %>
 		  <h4><%= options.title %></h4>
 	  <% end %>
@@ -22,7 +22,7 @@
 <% else %>
 	<% tags_list = object.tags(options.item) %>
 	<% if tags_list.size > 0 %>
-	  <div class="parameters <%= rotate(:odd_even) %>">
+	  <div class="parameters section">
 		<% unless options.title.empty? %>
 		  <h4><%= options.title %></h4>
 		<% end %>
