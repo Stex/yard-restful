@@ -217,18 +217,20 @@ pre.code.json code:active {
   }
 }
 
+.section {
+  padding: 12px 12px 18px;
+
+  &:nth-child(2n+1) {
+    background-color: #F5F5F5;
+  }
+
+  &:nth-child(2n) {
+    background-color: #EBEBEB;
+  }
+}
+
 .method {
   .section {
-    padding: 12px 12px 18px;
-
-    &:nth-child(2n+1) {
-      background-color: #F5F5F5;
-    }
-
-    &:nth-child(2n) {
-      background-color: #EBEBEB;
-    }
-
     ul {
       list-style-type: none;
     }

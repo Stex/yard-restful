@@ -208,21 +208,25 @@ pre.code.json code:active {
   border-left: 1px solid blue;
   margin-bottom: 10px; }
 
-.method .section {
+.section {
   padding: 12px 12px 18px; }
-  .method .section:nth-child(2n+1) {
+  .section:nth-child(2n+1) {
     background-color: #F5F5F5; }
-  .method .section:nth-child(2n) {
+  .section:nth-child(2n) {
     background-color: #EBEBEB; }
-  .method .section ul {
-    list-style-type: none; }
-  .method .section span.text {
-    display: block;
-    padding-left: 10px; }
-    .method .section span.text p:first-child {
-      margin-top: 2px; }
-  .method .section.response-status-codes .http-status {
-    padding-right: 10px;
-    font-weight: bold; }
-  .method .section.response-status-codes .internal-code {
-    padding-right: 10px; }
+
+.method .section ul {
+  list-style-type: none; }
+
+.method .section span.text {
+  display: block;
+  padding-left: 10px; }
+  .method .section span.text p:first-child {
+    margin-top: 2px; }
+
+.method .section.response-status-codes .http-status {
+  padding-right: 10px;
+  font-weight: bold; }
+
+.method .section.response-status-codes .internal-code {
+  padding-right: 10px; }
