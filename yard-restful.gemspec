@@ -47,6 +47,7 @@ Gem::Specification.new do |s|
   s.summary = "Yardoc plugin for Restful web services"
 
   s.add_dependency 'redcarpet', '~> 3'
+  s.add_dependency 'activesupport', '> 2'
 
   if s.respond_to? :specification_version then
     s.specification_version = 4

@@ -1,5 +1,6 @@
 require 'yard-restful/tags/param_tag'
 require 'yard-restful/tags/status_code_tag'
+require 'yard-restful/tags/url_field_tag'
 
 # Define custom tags
 tags = [
@@ -23,8 +24,9 @@ tags = [
   ["Example Response Description",  :example_response_description],
   ["Response Fields",               :response_field,    :with_types_and_name],
   ["Response Type",                 :response,    :with_types],
-  ['Request Attribute',             'resource.param', YardRestful::Tags::ParamTag],
-  ['Response Status Code',          'resource.status_code', YardRestful::Tags::StatusCodeTag]
+  ['Request Attribute',             'resource.param',       YardRestful::Tags::ParamTag],
+  ['Response Status Code',          'resource.status_code', YardRestful::Tags::StatusCodeTag],
+  ['Resource URL',                  'resource.url',         YardRestful::Tags::UrlFieldTag]
 ]
 
 tags.each do |tag|

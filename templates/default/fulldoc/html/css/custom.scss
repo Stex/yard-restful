@@ -208,13 +208,6 @@ pre.code.json code:active {
   .requirement[data-required=true] {
     color: red;
   }
-
-  ul.children {
-    padding-left: 5px;
-    margin-left: 10px;
-    border-left: 1px solid blue;
-    margin-bottom: 10px;
-  }
 }
 
 .section {
@@ -226,6 +219,13 @@ pre.code.json code:active {
 
   &:nth-child(2n) {
     background-color: #EBEBEB;
+  }
+
+  ul.children {
+    padding-left: 5px;
+    margin-left: 10px;
+    border-left: 1px solid blue;
+    margin-bottom: 10px;
   }
 }
 

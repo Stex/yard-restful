@@ -1,3 +1,5 @@
+require 'active_support/ordered_hash'
+
 def init
   @markdown = YardRestful.initialize_markdown
   @page_title = "#{object.name.to_s.gsub(/Controller/,"")} - #{options[:title]}"
@@ -14,6 +16,22 @@ def resource_details
       children = param_tags.select { |t| t.child_of?(tag) }
       children.each { |c| tag.add_child(c) }
       h[meth] << tag if tag.root_level?
+    end
+    h.delete(meth) if h[meth].empty?
+    h
+  end
+
+  @url_tag_hierarchy = @meths.inject({}) do |h, meth|
+    h[meth] = ActiveSupport::OrderedHash.new
+    h[meth]['root'] ||= []
+    param_tags = meth.tags('resource.url')
+    param_tags.each do |tag|
+      if tag.parent
+        h[meth][tag.parent.to_s] ||= []
+        h[meth][tag.parent.to_s] << tag
+      else
+        h[meth]['root'] << tag
+      end
     end
     h.delete(meth) if h[meth].empty?
     h

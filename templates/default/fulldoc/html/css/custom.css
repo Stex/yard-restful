@@ -202,18 +202,17 @@ pre.code.json code:active {
 .parameters .requirement[data-required=true] {
   color: red; }
 
-.parameters ul.children {
-  padding-left: 5px;
-  margin-left: 10px;
-  border-left: 1px solid blue;
-  margin-bottom: 10px; }
-
 .section {
   padding: 12px 12px 18px; }
   .section:nth-child(2n+1) {
     background-color: #F5F5F5; }
   .section:nth-child(2n) {
     background-color: #EBEBEB; }
+  .section ul.children {
+    padding-left: 5px;
+    margin-left: 10px;
+    border-left: 1px solid blue;
+    margin-bottom: 10px; }
 
 .method .section ul {
   list-style-type: none; }

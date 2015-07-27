@@ -1,14 +1,15 @@
 <% if options.resource_tags %>
 	<div class="parameters section">
 	  <% unless options.title.empty? %>
-		  <h4><%= options.title %> (<a href="#" onclick="$('.usage-instructions').toggle(); return false">Information</a>)</h4>
+		  <h4><%= options.title %></h4>
+		  <a href="#" onclick="$(this).parent('div').find('.usage-instructions').toggle(); return false">Information</a>
 	  <% end %>
       <div class="usage-instructions" style="display: none;">
         Parameters with a higher indentation than the previous parameter are meant to be children of it in the API request.
         <br />
         Example: <code>user -> email</code> should be sent as <code>user[email]</code>
         <br />
-        If a parent tag is marked as optional, its children only have to be provided if the parent tag itself
+        If a parent tag is marked as <span style="color: blueviolet;">optional</span>, its children only have to be provided if the parent tag itself
         is part of the request, even if they are marked as <span style="color: red;">required</span>.
       </div>
 
