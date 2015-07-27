@@ -67,7 +67,7 @@
                     <% @url_tag_hierarchy[meth].each do |parent, tags| %>
                         <% next if parent == 'root' %>
                         <li>
-                          <%= parent %>
+                          <span class="parent"><%= parent %></span>
                           <ul class="children">
                             <%= render_resource_url_tags(tags) %>
                           </ul>

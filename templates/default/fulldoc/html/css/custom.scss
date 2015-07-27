@@ -254,5 +254,11 @@ pre.code.json code:active {
         padding-right: 10px;
       }
     }
+
+    &.response-urls {
+      .name, .parent {
+        font-weight: bold;
+      }
+    }
   }
 }

@@ -229,3 +229,6 @@ pre.code.json code:active {
 
 .method .section.response-status-codes .internal-code {
   padding-right: 10px; }
+
+.method .section.response-urls .name, .method .section.response-urls .parent {
+  font-weight: bold; }
