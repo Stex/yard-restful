@@ -1,0 +1,12 @@
+<li>
+  <span class="name"><%= @tag.name %></span>
+  <span class="type"><%= format_types(@tag.types, false) %></span>
+  <span class="text"><%= @markdown.render(@tag.text) if @tag.text %></span>
+  <% if @tag.children.any? %>
+      <ul class="children">
+        <% @tag.children.stable_sort.each do |child| %>
+            <%= render_resource_response_tag(child) %>
+        <% end %>
+      </ul>
+  <% end %>
+</li>

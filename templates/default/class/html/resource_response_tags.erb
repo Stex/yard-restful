@@ -1,0 +1,18 @@
+<div class="parameters section">
+  <h4>Response Fields</h4>
+  <a href="#" onclick="$(this).parent('div').find('.usage-instructions').toggle(); return false">Information</a>
+  <div class="usage-instructions" style="display: none;">
+    Fields with a higher indentation than the previous field are meant to be children of it in the API response.
+    <br />
+    Example: <code>user -> email</code> means, the response contains the JSON <code>{"user": {"email": "..."}}</code>
+    <br />
+    If the response object is an array (see "Response Object"), the response fields are returned for each of
+    the array items.
+  </div>
+
+  <ul>
+    <% @tags.each do |tag| %>
+        <%= render_resource_response_tag(tag) %>
+    <% end %>
+  </ul>
+</div>

@@ -6,12 +6,10 @@ def init
   sections :header, [T('docstring'), :object_details, [:fields_list], :resource_details, [:fields_list]]
 end
 
-def resource_details
-  @meths    = (object.meths.select{|x| x.has_tag? :url} || [])
-
-  @resource_tag_hierarchy = @meths.inject({}) do |h, meth|
+def build_nested_tag_hierarchy(tag_name)
+  @meths.inject({}) do |h, meth|
     h[meth] = []
-    param_tags = meth.tags('resource.param')
+    param_tags = meth.tags(tag_name)
     param_tags.each do |tag|
       children = param_tags.select { |t| t.child_of?(tag) }
       children.each { |c| tag.add_child(c) }
@@ -20,22 +18,13 @@ def resource_details
     h.delete(meth) if h[meth].empty?
     h
   end
+end
 
-  @url_tag_hierarchy = @meths.inject({}) do |h, meth|
-    h[meth] = ActiveSupport::OrderedHash.new
-    h[meth]['root'] ||= []
-    param_tags = meth.tags('resource.url')
-    param_tags.each do |tag|
-      if tag.parent
-        h[meth][tag.parent.to_s] ||= []
-        h[meth][tag.parent.to_s] << tag
-      else
-        h[meth]['root'] << tag
-      end
-    end
-    h.delete(meth) if h[meth].empty?
-    h
-  end
+def resource_details
+  @meths = (object.meths.select{|x| x.has_tag? :url} || [])
+
+  @resource_tag_hierarchy = build_nested_tag_hierarchy('resource.param')
+  @response_tag_hierarchy = build_nested_tag_hierarchy('resource.response_field')
 
   erb(:resource_details)
 end

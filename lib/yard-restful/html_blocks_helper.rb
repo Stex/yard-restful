@@ -29,11 +29,11 @@ module HtmlBlocksHelper
   end
 
   #
-  # Renders the given URL tags. This will not generate the parent identation
+  # Renders a single resource_param_tag
   #
-  def render_resource_url_tags(url_tags)
-    @tags = url_tags
-    erb(:resource_url_tags)
+  def render_resource_response_tag(tag)
+    @tag = tag
+    erb(:resource_response_tag)
   end
 end
 

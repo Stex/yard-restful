@@ -1,6 +1,0 @@
-<% @tags.each do |tag| %>
-    <li>
-      <span class="name"><%= tag.name %></span>
-      <span class="text"><%= @markdown.render(tag.text) if tag.text %></span>
-    </li>
-<% end %>

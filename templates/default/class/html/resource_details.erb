@@ -50,35 +50,13 @@
                 <%= yieldall(object: meth, item: :response_field, title: 'Response Fields') %>
             <% end %>
 
-            <% if meth.tags('resource.url').any? %>
-                <div class="section response-urls">
-                  <h4>Response Resource URLs</h4>
-                  <a href="#" onclick="$(this).parent('div').find('.usage-instructions').toggle(); return false">Information</a>
-                  <div class="usage-instructions" style="display: none;">
-                    URLs pointing to various resources in the application. <br />
-                    The URLs are usually collected within the <code>urls</code> response field. <br />
-                    If a URL is shown with a higher indentation, it means that it isn't part of the root
-                    response object, but rather of one of its associations. <br />
-                    Example: <code>author -> resource</code> means, that a <code>resource</code> URL can be found
-                    in <code>author[urls][resource]</code>
-                  </div>
-                  <ul>
-                    <%= render_resource_url_tags(@url_tag_hierarchy[meth]['root']) %>
-                    <% @url_tag_hierarchy[meth].each do |parent, tags| %>
-                        <% next if parent == 'root' %>
-                        <li>
-                          <span class="parent"><%= parent %></span>
-                          <ul class="children">
-                            <%= render_resource_url_tags(tags) %>
-                          </ul>
-                        </li>
-                    <% end %>
-                  </ul>
-                </div>
-            <% end %>
-
             <% if meth.tags(:raise).size > 0 %>
                 <%= yieldall(object: meth, item: :raise, title: 'Errors') %>
+            <% end %>
+
+            <% if @response_tag_hierarchy[meth] && @response_tag_hierarchy[meth].any? %>
+                <% @tags = @response_tag_hierarchy[meth] %>
+                <%= erb('resource_response_tags') %>
             <% end %>
 
             <% if meth.tags(:example_request).size > 0 %>
