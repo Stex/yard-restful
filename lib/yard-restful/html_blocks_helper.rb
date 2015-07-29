@@ -13,7 +13,7 @@ module HtmlBlocksHelper
   end
 
   def type_as_string(type)
-    if type.resource? and type.tag(:restful_api).text
+    if type.tag(:restful_api) && type.resource?
       "#{type.path.to_s.gsub(/(Controller|V\d::|Api::)/, '')} [#{type.tag(:restful_api).text}]"
     else
       type.name.to_s
